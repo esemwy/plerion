@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plerion Sub-sector Generator</title>
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    >
+</head>
+<body>
+    <h1>Plerion Sub-sector Generator </h1>
+    <h2>(v.0.5)</h2>
+
+    <!-- Visualization Container -->
+    <div id="visualization"></div>
+
+    <!-- Text Output Container -->
+    <pre id="output"></pre>
+
+    <!-- Download Button -->
+    <button onclick="downloadOutput()">Download Output</button>
+
+    <script src="generator.js"></script>
+    <script>
+        // Automatically generate the sub-sector when the page loads
+        window.onload = function() {
+            generateSubSector();
+        };
+
+        // Function to download the visualization and output
+        function downloadOutput() {
+            // Get the SVG and text output
+            const svgElement = document.querySelector('#visualization svg');
+            const outputText = document.querySelector('#output').textContent;
+
+            // Serialize the SVG content
+            const serializer = new XMLSerializer();
+            const svgString = serializer.serializeToString(svgElement);
+
+            // Create a Blob combining the SVG and text content
+            const htmlContent = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Plerion Sub-sector Output</title>
+                </head>
+                <body>
+                    <h1>Plerion Sub-sector Output</h1>
+                    <h2>Visualization</h2>
+                    ${svgString} <!-- Embed the SVG visualization -->
+                    <h2>Text Output</h2>
+                    <pre>${outputText}</pre> <!-- Embed the text output -->
+                </body>
+                </html>
+            `;
+
+            // Create a Blob from the HTML content
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+
+            // Create a link element to trigger the download
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'plerion_subsector_output.html';
+
+            // Append the link to the body and click it
+            document.body.appendChild(link);
+            link.click();
+
+            // Clean up by removing the link
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>

@@ -14,14 +14,15 @@
     <h1>Plerion Sub-sector Generator </h1>
     <h2>(v.0.5)</h2>
 
+    <!-- Download Button -->
+    <button onclick="downloadOutput()">Download Output</button>
     <!-- Visualization Container -->
+    <h2>Star Map</h2>
     <div id="visualization"></div>
 
     <!-- Text Output Container -->
+    <h2>Systems Data</h2>
     <pre id="output"></pre>
-
-    <!-- Download Button -->
-    <button onclick="downloadOutput()">Download Output</button>
 
     <script src="generator.js"></script>
     <script>
@@ -51,9 +52,9 @@
                 </head>
                 <body>
                     <h1>Plerion Sub-sector Output</h1>
-                    <h2>Visualization</h2>
+                    <h2>Star Map</h2>
                     ${svgString} <!-- Embed the SVG visualization -->
-                    <h2>Text Output</h2>
+                    <h2>Systems Data</h2>
                     <pre>${outputText}</pre> <!-- Embed the text output -->
                 </body>
                 </html>

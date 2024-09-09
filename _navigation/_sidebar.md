@@ -13,6 +13,7 @@
 * [Vehicles & Starships](/010_vehicles_starships.md)
 * [Worlds & Systems](/011_worlds_systems.md)
 * [Starfaring Adventures](/012_starfaring_adventures.md)
+* [Trade](/012a_trade.md)
 * [Creatures](/013_creatures.md)
 * [Spark Tables](/014_spark_tables.md)
 * [Rules Summary](/015_rules_summary.md)

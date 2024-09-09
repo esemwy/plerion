@@ -58,40 +58,6 @@ On salvaging mission, the referee should roll on the following event table, for 
 - Also distress calls could lead to dealing with similar environments.
 - Encounter tables should be built thematically based on the type of mission and derelict explored (such as an alien infestation, a terrorist boarding, a failed experiment in a laboratory that released pathogens or psychotropics, etc.).
 
-## Trade
-Trade is the backbone of the intergalactic economy. The routes established through the star systems guarantee the supply of materials impossible to produce on one planet, by importing them from others.
-
-Usually, the most profitable routes are drawn between agricultural and industrial planets, speculating on the difference in price that each type of economy is willing to pay to import the materials produced by the others.
-
-| Goods       | Average Price | Supplier World | Availability |
-| ----------- | ------------- | -------------- | ------------ |
-| Food        | 50 cr/t       | Agricultural   | 1d20x50 t    |
-| Textiles    | 70 cr/t       | Agricultural   | 1d20x50 t    |
-| Spirits     | 300 cr/t      | Agricultural   | 1d20x20 t    |
-| Luxuries    | 900 cr/t      | Central*       | 1d20x10 t    |
-| Drugs       | 50 cr/kg      | Industrial     | 1d20x20 kg   |
-| Electronics | 800 cr/kg     | Industrial     | 1d20x50 kg   |
-| Machinery   | 600 cr/t      | Industrial     | 1d20x50 t    |
-| Alloys      | 400 cr/t      | Mining         | 1d20x40 t    |
-| Weapons     | 700 cr/kg     | Industrial     | 1d20x20 kg   |
-| Raws        | 120 cr/t      | Mining         | 1d20x100 t   |
-| Ores        | 250 cr/t      | Mining         | 1d20x100 t   |
-| Artifacts   | 50,000 ea.    | Central*       | 1d6          |
-| Fuel        | 200 cr/bbl    | Any            | 1d20x10 bbl  |
-
-\* A Central world is either a Political/Religious Center or a Finance world.
-
-The base price therefore undergoes variations in relation to planetary GDP level.
-
-| ---      | Poor | Low  | Average | Good | High | Rich |
-| :------: | :--: | :--: | :-----: | :--: | :--: | :--: |
-| Purchase | 120% | 110% | 100%    | 90%  | 80%  | 70%  |
-| Sale     | 80%  | 90%  | 100%    | 110% | 120% | 130% |
-
-<img id="tradeimg" class="bottonimg" src="_assets/planets-5799077.jpg">
-
-
-
 ## Missions
 
 If you need to build a Mission on the fly or you are looking for inspiration you can pull on the following tables to build the outline.

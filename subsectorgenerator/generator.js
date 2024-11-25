@@ -1,3 +1,59 @@
+let currentSeed = null; // Global variable to store the seed
+let gStars = null;
+
+function seedRandom(seed) {
+    currentSeed = seed; // Store the seed in the global variable
+    let state = seed % 2147483647; // Use a large prime number
+    if (state <= 0) state += 2147483646; // Ensure seed is positive
+
+    return function () {
+        state = (state * 16807) % 2147483647; // LCG: (a * x) % m
+        return (state - 1) / 2147483646;      // Scale to range [0, 1)
+    };
+}
+
+function parseSeedFromParam(param) {
+    if (!param) return null;
+
+    // Extract and parse seed from "B-0741-136-Priabiar" format
+    const match = param.match(/B-(\d+)-(\d+)-/);
+    if (!match) return null;
+
+    const part1 = parseInt(match[1], 10);
+    const part2 = parseInt(match[2], 10);
+    if (isNaN(part1) || isNaN(part2)) return null;
+
+    return part1 * 1000 + part2; // Calculate seed
+}
+
+function getSeedFromURL() {
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    const qParam = params.get('q');
+    return parseSeedFromParam(qParam);
+}
+
+function setupSeededRandom() {
+    const originalRandom = Math.random; // Keep a reference to the original Math.random
+
+    let seed = getSeedFromURL();
+    if (!seed) {
+        seed = Math.floor(originalRandom() * 10000000); // Generate a fallback seed
+    }
+
+    Math.random = seedRandom(seed);
+
+    console.log(`Using seed: ${seed}`);
+}
+
+// Initialize seeded random
+setupSeededRandom();
+
+// Example usage in another function
+function printCurrentSeed() {
+    console.log(`Current Seed: ${currentSeed}`);
+}
+
 // Function to generate a random number within a range
 function rollDice(sides, count = 1) {
     let total = 0;
@@ -10,62 +66,61 @@ function rollDice(sides, count = 1) {
 // Function to generate a random code for a sector
 function generateSectorCode() {
     const quadrant = String.fromCharCode(65 + Math.floor(Math.random() * 4)); // A, B, C, D
-    const sector = String(rollDice(10000) - 1).padStart(4, '0'); // 0 to 9999
-    const subSector = String(rollDice(1000) - 1).padStart(3, '0'); // 0 to 999
+    // const sector = String(rollDice(10000) - 1).padStart(4, '0'); // 0 to 9999
+    // const subSector = String(rollDice(1000) - 1).padStart(3, '0'); // 0 to 999
+    const sector = String(Math.floor(currentSeed / 1000)).padStart(4,'0');
+    const subSector = String(currentSeed % 1000).padStart(3, '0');
     const subSectorName = generateName(markovChain); // Generate the subsector name using the Name Generator
     return `${quadrant}-${sector}-${subSector}-${subSectorName}`;
 }
 
+function getDistanceReport(sourceId, links) {
+    console.log(`Generating distance report for source: ${sourceId}`);
+
+    // Filter links for the given source ID
+    const filteredLinks = links.filter(link => link.source.id === sourceId);
+
+    // Generate distance report for the filtered links
+    const report = filteredLinks.map(link => {
+        const source = link.source;
+        const target = link.target;
+
+        const distance = Math.sqrt(
+            Math.pow(target.x - source.x, 2) + Math.pow(target.y - source.y, 2)
+        );
+        return `${distance.toFixed(2)} ly to "${target.id}"`;
+    });
+
+    return `Gates: ${report.join(', ')}`;
+}
+
+function createOutput(stars, links) {
+    let output = '';
+    const sectorCode = generateSectorCode();
+    const numberOfStars = stars.length;
+    output += `Sub-Sector: ${sectorCode}\nNumber of Stars: ${numberOfStars}\n\n`;
+    console.log('called');
+    for (let i = 0; i < numberOfStars; i++) {
+        const distanceReport = getDistanceReport(stars[i].name, links);
+        output += `Star ${i+1} "${stars[i].name}"\n`
+        output += `${distanceReport}\n`;
+        output += `${stars[i].systemOutput}\n`;
+    }
+    document.getElementById('output').textContent = output;
+}
 // Function to generate a sub-sector and prepare data for visualization
 function generateSubSector() {
-    let output = '';
     const numberOfStars = rollDice(20, 2); // Step 1: Roll 2d20 to determine the number of stars
-    const sectorCode = generateSectorCode();
-    output += `Sub-Sector: ${sectorCode}\nNumber of Stars: ${numberOfStars}\n\n`;
-
     let stars = [];
-    let links = []; // To store connections for visualization
 
     for (let i = 0; i < numberOfStars; i++) {
         const starName = generateName(markovChain); // Generate the star name
-
-        // Step 2: Calculate the star distance
-        let starDistance;
-        let distanceInfo = ''; // To store from which stars the distance is being measured
-
-        if (i === 0) {
-            // First star has no distance reference, omit distance info
-            starDistance = null; // No distance for the first star
-            output += `Star ${i + 1} (${starName})\n`; // Just print the name
-        } else if (i === 1) {
-            // Second star, roll 1d6 and add the first star's distance
-            starDistance = rollDice(6) + stars[i - 1].distance;
-            distanceInfo = `from Star 1 (${stars[i - 1].name})`;
-            links.push({ source: stars[i - 1].name, target: starName, distance: starDistance });
-        } else {
-            // Third and subsequent stars, roll 1d6 and sum the distances of the two previous stars
-            starDistance = rollDice(6) + stars[i - 1].distance + stars[i - 2].distance;
-            distanceInfo = `from Star ${i} (${stars[i - 1].name}) and Star ${i - 1} (${stars[i - 2].name})`;
-            links.push({ source: stars[i - 1].name, target: starName, distance: starDistance });
-            links.push({ source: stars[i - 2].name, target: starName, distance: starDistance });
-        }
-
         let starSystem = generateSystem(starName); // Pass the star name to generateSystem()
-        stars.push({ name: starName, distance: starDistance, systemOutput: starSystem.systemOutput, spectralType: starSystem.spectralType });
-
-        // Output the star information, including distance only if applicable
-        if (i === 0) {
-            output += `${starSystem.systemOutput}\n`; // First star has no distance
-        } else {
-            output += `Star ${i + 1} (${starName}) -> Distance: ${starDistance} light-years (${distanceInfo})\n${starSystem.systemOutput}\n`;
-        }
+        stars.push({ name: starName, distance: [], systemOutput: starSystem.systemOutput, spectralType: starSystem.spectralType });
     }
-
+    gStars = stars;
     // Prepare nodes and links for visualization
-    const nodes = stars.map(star => ({ id: star.name, spectralType: star.spectralType }));
-    visualizeSubSector(nodes, links); // Call visualization function with nodes and links data
-
-    document.getElementById('output').textContent = output;
+    visualizeSubSector(stars, createOutput); // Call visualization function with nodes and links data
 }
 
 // Function to generate a system for a given star name
@@ -78,29 +133,20 @@ function generateSystem(starName) {
     systemOutput += `Spectral Type: ${spectralType}\n`;
 
     // Roll for the number of space habitats
-    const numberOfHabitats = rollDice(6); // Step 4: Roll 1d6 for space habitats
+    const numberOfHabitats = rollDice(6)-1; // Step 4: Roll 1d6 for space habitats
     systemOutput += `Number of Space Habitats: ${numberOfHabitats}\n`;
-
-    let hasSpecialHabitat = false;
-
-    // Determine the type of each space habitat
-    for (let i = 0; i < numberOfHabitats; i++) {
-        const habitatType = determineSpaceHabitatType(rollDice(20));
-        systemOutput += `Space Habitat ${i + 1}: ${habitatType}\n`;
-
-        // Check if the space habitat is Ringworld or Dyson Sphere
-        if (habitatType === 'Ringworld' || habitatType === 'Dyson Sphere') {
-            hasSpecialHabitat = true;
-        }
+    if (numberOfHabitats === 0) {
+        systemOutput += "Dead System: No planets in this system.\n";
     }
+    else {
+        // Determine the type of each space habitat
+        for (let i = 0; i < numberOfHabitats; i++) {
+            const habitatType = determineSpaceHabitatType(rollDice(20));
+            systemOutput += `Space Habitat ${i + 1}: ${habitatType}\n`;
+        }
 
-    let numberOfPlanets;
+        let numberOfPlanets;
 
-    // If there is a Ringworld or Dyson Sphere, there are no planets
-    if (hasSpecialHabitat) {
-        numberOfPlanets = 0;
-        systemOutput += 'Special Habitat (Ringworld/Dyson Sphere): No planets in this system.\n';
-    } else {
         numberOfPlanets = rollDice(6) + 4; // Step 3: Roll 1d6+4 to determine planets
         systemOutput += `Number of Planets: ${numberOfPlanets}\n`;
 
@@ -109,7 +155,7 @@ function generateSystem(starName) {
         for (let i = 0; i < numberOfPlanets; i++) {
             const planetName = `${starName}-${i + 1}`; // Name the planet based on the star name and its position
             const planetType = determinePlanetType(rollDice(20), i < habitableWorlds); // Determine if the planet is habitable
-            let planetDetails = `Planet ${i + 1} (${planetName}): ${planetType}`;
+            let planetDetails = `  Planet ${i + 1} (${planetName}): ${planetType}`;
             
             // Determine features for the planet regardless of its type
             const planetFeatures = determinePlanetFeatures(rollDice(20));
@@ -127,7 +173,7 @@ function generateSystem(starName) {
                 population = determinePopulation();
                 if (population !== 'Uninhabited') {
                     const habitablePlanetName = generateName(markovChain); // Assign a randomly generated name
-                    planetDetails += `\n  Name: ${habitablePlanetName}`;
+                    planetDetails += `\n    Name: ${habitablePlanetName}`;
                 }
             } else {
                 // If the planet is not habitable, restrict tech level to Stellar Age or Interstellar Age
@@ -139,15 +185,15 @@ function generateSystem(starName) {
                 population = determinePopulation();
                 if (population !== 'Uninhabited') {
                     const colonyType = determineColonyType();
-                    planetDetails += `\n  Colony: ${colonyType}`;
+                    planetDetails += `\n    Colony: ${colonyType}`;
                 }
             }
 
-            planetDetails += `\n  Government: ${government}`;
-            planetDetails += `\n  Economy: ${economy}`;
-            planetDetails += `\n  GDP Level: ${gdpLevel}`;
-            planetDetails += `\n  Tech Level: ${techLevel}`;
-            planetDetails += `\n  Population: ${population}`;
+            planetDetails += `\n    Government: ${government}`;
+            planetDetails += `\n    Economy: ${economy}`;
+            planetDetails += `\n    GDP Level: ${gdpLevel}`;
+            planetDetails += `\n    Tech Level: ${techLevel}`;
+            planetDetails += `\n    Population: ${population}`;
 
             // Determine moons for the planet
             planetDetails += determineMoons(planetName);
@@ -220,14 +266,13 @@ function determinePlanetFeatures(roll) {
 }
 
 function determineSpaceHabitatType(roll) {
-    if (roll <= 4) return "O'Neil Cylinder";
-    if (roll <= 6) return "McKendree Cylinder";
-    if (roll <= 9) return "Stanford Torus";
-    if (roll <= 14) return "Bernal Sphere";
-    if (roll <= 16) return "Bishop Ring";
-    if (roll <= 18) return "Banks Orbital";
-    if (roll === 19) return "Dyson Sphere";
-    if (roll === 20) return "Ringworld";
+    if (roll <= 6) return "Asteroid Colony";
+    if (roll <= 8) return "O'Neil Cylinder";
+    if (roll <= 10) return "McKendree Cylinder";
+    if (roll <= 13) return "Stanford Torus";
+    if (roll <= 15) return "Bernal Sphere";
+    if (roll <= 18) return "Bishop Ring";
+    if (roll <= 20) return "Banks Orbital";
 }
 
 function determineGovernment() {
@@ -312,15 +357,15 @@ function determineMoons(planetType) {
     }
 
     if (numberOfMoons > 0) {
-        moonDetails += `\n  Moons: ${numberOfMoons}`;
+        moonDetails += `\n    Moons: ${numberOfMoons}`;
         for (let j = 0; j < numberOfMoons; j++) {
             const moonType = determineMoonType(rollDice(20));
             const moonPopulation = determinePopulation(true); // Roll for moon population, capped at 10mln
 
-            moonDetails += `\n    Moon ${j + 1}: ${moonType}, Population: ${moonPopulation}`;
+            moonDetails += `\n      Moon ${j + 1}: ${moonType}, Population: ${moonPopulation}`;
         }
     } else {
-        moonDetails += `\n  Moons: None`;
+        moonDetails += `\n    Moons: None`;
     }
 
     return moonDetails;
@@ -364,11 +409,11 @@ function determineSpaceStations() {
     const numberOfStations = rollDice(20); // Roll 1d20 to determine how many stations
     if (numberOfStations === 0) return ''; // If no stations, return nothing
 
-    let stationDetails = `\n  Space Stations: ${numberOfStations}`;
+    let stationDetails = `\n    Space Stations: ${numberOfStations}`;
     for (let i = 0; i < numberOfStations; i++) {
         const stationType = determineStationType();
         const stationFunction = determineStationFunction();
-        stationDetails += `\n    Station ${i + 1}: ${stationType}, Function: ${stationFunction}`;
+        stationDetails += `\n      Station ${i + 1}: ${stationType}, Function: ${stationFunction}`;
     }
 
     return stationDetails;
@@ -438,7 +483,7 @@ function buildMarkovChain(names) {
 }
 
 // Function to generate a new name using the Markov Chain, ensuring the first letter is uppercase
-function generateName(chain, maxLength = 10) {
+function generateName(chain, maxLength = 8) {
     const name = [];
     
     // Ensure the first character is always uppercase
@@ -496,11 +541,10 @@ const spectralColors = {
 };
 
 // Visualization function with D3.js
-function visualizeSubSector(nodes, links) {
-    const width = 1200;
-    const height = 800;
-
-    // Spectral type colors (example mapping)
+function visualizeSubSector(stars, callback) {
+    const width = window.innerWidth - 30; // Dynamically get window width
+    const height = window.innerHeight - 60; // Dynamically get window height
+    const buffer = 30; // Buffer space around the edges of the SVG
     const spectralColors = {
         "M (Red-Orange)": "#ff4500",  // Red-Orange
         "K (Orange)": "#ff8c00",  // Orange
@@ -508,7 +552,11 @@ function visualizeSubSector(nodes, links) {
         "A (White)": "#ffffff",  // White
         "Special": "#a020f0"  // Purple or other for special types
     };
-
+   const nodes = stars.map(star => ({ id: star.name, spectralType: star.spectralType }));
+    // Ensure each node has 1 to 3 connections with random other nodes
+    links = generateRandomLinks(nodes, 1, 3);
+    console.log("Nodes:",nodes);
+    console.log("Links:", links);
     // Clear the previous visualization if it exists
     d3.select("#visualization").selectAll("*").remove();
 
@@ -521,12 +569,12 @@ function visualizeSubSector(nodes, links) {
     // Create a simulation with force-directed layout
     const simulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links).id(d => d.id).strength(0.1))
-        .force("charge", d3.forceManyBody().strength(-400))
+        .force("charge", d3.forceManyBody().strength(-700))
         .force("center", d3.forceCenter(width / 2, height / 2))
-        .force("x", d3.forceX(width / 2).strength(0.05))
-        .force("y", d3.forceY(height / 2).strength(0.05))
-        .force("collide", d3.forceCollide(30));
-
+        .force("x", d3.forceX(width / 2).strength(0.012))
+        .force("y", d3.forceY(height / 2).strength(0.012))
+        .force("collide", d3.forceCollide(50));
+        
     // Add lines for the links between nodes
     const link = svg.append("g")
         .attr("stroke", "#999")
@@ -544,7 +592,7 @@ function visualizeSubSector(nodes, links) {
         .data(nodes)
         .enter().append("circle")
         .attr("r", 10)
-        .attr("fill", d => spectralColors[d.spectralType] || "#69b3a2")  // Use spectral type for color
+        .attr("fill", d => spectralColors[d.spectralType] || "#69b3a2") // Use spectral type for color
         .call(drag(simulation));
 
     // Add labels to the nodes
@@ -564,13 +612,18 @@ function visualizeSubSector(nodes, links) {
             .attr("x2", d => d.target.x)
             .attr("y2", d => d.target.y);
 
-        node
-            .attr("cx", d => d.x)
-            .attr("cy", d => d.y);
-
+            node
+            .attr("cx", d => (d.x = Math.max(buffer, Math.min(width - buffer, d.x)))) // Constrain x with buffer
+            .attr("cy", d => (d.y = Math.max(buffer, Math.min(height - buffer, d.y)))); // Constrain y with buffer
+    
         label
             .attr("x", d => d.x)
             .attr("y", d => d.y);
+    });
+
+    simulation.on("end", () => {
+        console.log("Simulation completed. Calculating distances...");
+        callback(stars, links);
     });
 
     // Dragging functionality for nodes
@@ -597,4 +650,22 @@ function visualizeSubSector(nodes, links) {
             .on("drag", dragged)
             .on("end", dragended);
     }
+
+    // Function to generate random links ensuring 1-3 connections per node
+    function generateRandomLinks(nodes, minConnections, maxConnections) {
+        const links = [];
+        nodes.forEach((source, index) => {
+            const connectionCount = Math.floor(Math.random() * (maxConnections - minConnections + 1)) + minConnections;
+            const targets = [...nodes];
+            targets.splice(index, 1); // Remove self from potential targets
+            for (let i = 0; i < connectionCount; i++) {
+                if (targets.length === 0) break;
+                const randomIndex = Math.floor(Math.random() * targets.length);
+                const target = targets.splice(randomIndex, 1)[0]; // Ensure unique connection
+                links.push({ source: source.id, target: target.id });
+            }
+        });
+        return links;
+    }
 }
+

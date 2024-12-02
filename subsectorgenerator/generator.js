@@ -16,7 +16,7 @@ function parseSeedFromParam(param) {
     if (!param) return null;
 
     // Extract and parse seed from "B-0741-136-Priabiar" format
-    const match = param.match(/B-(\d+)-(\d+)-/);
+    const match = param.match(/[A-D]-(\d+)-(\d+)-/);
     if (!match) return null;
 
     const part1 = parseInt(match[1], 10);
@@ -42,17 +42,10 @@ function setupSeededRandom() {
     }
 
     Math.random = seedRandom(seed);
-
-    console.log(`Using seed: ${seed}`);
 }
 
 // Initialize seeded random
 setupSeededRandom();
-
-// Example usage in another function
-function printCurrentSeed() {
-    console.log(`Current Seed: ${currentSeed}`);
-}
 
 // Function to generate a random number within a range
 function rollDice(sides, count = 1) {
@@ -75,7 +68,6 @@ function generateSectorCode() {
 }
 
 function getDistanceReport(sourceId, links) {
-    console.log(`Generating distance report for source: ${sourceId}`);
 
     // Filter links for the given source ID
     const filteredLinks = links.filter(link => link.source.id === sourceId);
@@ -96,16 +88,18 @@ function getDistanceReport(sourceId, links) {
 
 function createOutput(stars, links) {
     let output = '';
+    const url = new URL(window.location.href);
     const sectorCode = generateSectorCode();
+    const link = `${url}?q=${sectorCode}`;
     const numberOfStars = stars.length;
     output += `Sub-Sector: ${sectorCode}\nNumber of Stars: ${numberOfStars}\n\n`;
-    console.log('called');
     for (let i = 0; i < numberOfStars; i++) {
         const distanceReport = getDistanceReport(stars[i].name, links);
         output += `Star ${i+1} "${stars[i].name}"\n`
         output += `${distanceReport}\n`;
         output += `${stars[i].systemOutput}\n`;
     }
+    document.getElementsByTagName('h1')[0].innerHTML = `Plerion Sub-Sector <a href="${link}">${sectorCode}</a>`
     document.getElementById('output').textContent = output;
 }
 // Function to generate a sub-sector and prepare data for visualization
@@ -555,8 +549,6 @@ function visualizeSubSector(stars, callback) {
    const nodes = stars.map(star => ({ id: star.name, spectralType: star.spectralType }));
     // Ensure each node has 1 to 3 connections with random other nodes
     links = generateRandomLinks(nodes, 1, 3);
-    console.log("Nodes:",nodes);
-    console.log("Links:", links);
     // Clear the previous visualization if it exists
     d3.select("#visualization").selectAll("*").remove();
 
@@ -622,7 +614,6 @@ function visualizeSubSector(stars, callback) {
     });
 
     simulation.on("end", () => {
-        console.log("Simulation completed. Calculating distances...");
         callback(stars, links);
     });
 

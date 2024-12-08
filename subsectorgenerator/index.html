@@ -4,23 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plerion Sub-sector Generator</title>
-	<script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
     >
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+        }
+        .container { 
+            max-width: 100%; 
+            position: relative; 
+        }
+        .button-container { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+            gap: 5px; position: absolute; 
+            top: 50px; 
+            left: 10px; 
+            visibility: hidden;
+        }
+        .button-container button { 
+          width: 10rem; 
+          margin-bottom: 10px; 
+          padding: 0.5rem 1rem; 
+          font-size: 0.875rem; 
+        }
+        #modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        #modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        #output {
+            background-color: #000;
+            color: #fff;
+            padding: 1rem;
+            border: 1px solid #fff;
+            max-height: 400px;
+            overflow: auto;
+            white-space: pre-wrap;
+        }
+        .close-button {
+            background: none;
+            border: none;
+            color: #000;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        #sub-sector-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: left;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Plerion Sub-sector Generator </h1>
+    <div class="container">
+        <div id="sub-sector-title">Plerion Sub-sector Generator</div>
 
-    <!-- Download Button -->
-    <button onclick="downloadOutput()">Download Output</button>
-    <!-- Visualization Container -->
-    <div id="visualization"></div>
+        <!-- Button Container -->
+        <div class="button-container">
+            <button id="download-button" onclick="downloadOutput()">Download Output</button>
+            <button id="show-output-button">Show Systems Data</button>
+        </div>
 
-    <!-- Text Output Container -->
-    <h2>Systems Data</h2>
-    <pre id="output"></pre>
+        <!-- Visualization Container -->
+        <div id="visualization"></div>
+
+        <!-- Modal for Text Output -->
+        <div id="modal-overlay" onclick="closeModal()"></div>
+        <div id="modal">
+            <button class="close-button" onclick="closeModal()" aria-label="Close">&times;</button>
+            <h2 style="color: #000;">Systems Data</h2>
+            <pre id="output"></pre>
+        </div>
+    </div>
 
     <script src="generator.js"></script>
     <script>
@@ -72,6 +158,21 @@
 
             // Clean up by removing the link
             document.body.removeChild(link);
+        }
+
+        // Modal functionality
+        const modal = document.getElementById('modal');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const showOutputButton = document.getElementById('show-output-button');
+
+        showOutputButton.onclick = function() {
+            modal.style.display = 'block';
+            modalOverlay.style.display = 'block';
+        };
+
+        function closeModal() {
+            modal.style.display = 'none';
+            modalOverlay.style.display = 'none';
         }
     </script>
 </body>

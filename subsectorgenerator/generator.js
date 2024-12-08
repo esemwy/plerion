@@ -90,7 +90,7 @@ function createOutput(stars, links) {
     let output = '';
     const url = new URL(window.location.href);
     const sectorCode = generateSectorCode();
-    const link = `${url}?q=${sectorCode}`;
+    const link = `/?q=${sectorCode}`;
     const numberOfStars = stars.length;
     output += `Sub-Sector: ${sectorCode}\nNumber of Stars: ${numberOfStars}\n\n`;
     for (let i = 0; i < numberOfStars; i++) {
@@ -99,8 +99,9 @@ function createOutput(stars, links) {
         output += `${distanceReport}\n`;
         output += `${stars[i].systemOutput}\n`;
     }
-    document.getElementsByTagName('h1')[0].innerHTML = `Plerion Sub-Sector <a href="${link}">${sectorCode}</a>`
+    document.getElementById('sub-sector-title').innerHTML = `Plerion Sub-Sector <a href="${link}">${sectorCode}</a>`
     document.getElementById('output').textContent = output;
+    document.getElementsByClassName('button-container')[0].style.visibility = "visible";
 }
 // Function to generate a sub-sector and prepare data for visualization
 function generateSubSector() {

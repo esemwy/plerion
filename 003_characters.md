@@ -70,6 +70,8 @@ If you would like something closer to traditional classes, refer to the list of 
 - **Bassarinae** – Uplifted ringtails. Agile, clever, and urban-adapted.  
 - **Quadruped** – Partially uplifted species retaining a four-legged stance with enhanced intelligence and limited tool use.  
 
+<div style="page-break-before: always;"></div>
+
 ### Species Abilities (Non-Human Characters)
 
 |     |            |     |           |     |           |     |            |
@@ -79,26 +81,6 @@ If you would like something closer to traditional classes, refer to the list of 
 | 3  | Curious  | 8  | Solitary  | 13  | Expressive Ears  | 18  | Observant  |  
 | 4  | Proud  | 9  | Patient  | 14  | Pungent  | 19  | Dry Humor  |  
 | 5  | Stubborn  | 10  | Subtle  | 15  | Keen Taste  | 20  | Collector |
-
-<!-- ### Species
-
-|     |            |     |           |     |           |     |            |
-| --- | ---------- | --- | --------- | --- | --------- | --- | ---------- |
-| 1   | Humanoid   | 6   | Insectoid | 11  | Canine    | 16  | Cetacean   |
-| 2   | Humanoid   | 7   | Icthyoid  | 12  | Feline    | 17  | Energy     |
-| 3   | Humanoid   | 8   | Saurian   | 13  | Amorphous | 18  | Amphibious |
-| 4   | Humanoid   | 9   | Ursine    | 14  | Symbiont  | 19  | Human      |
-| 5   | Transhuman | 10  | Vulpine   | 15  | Quadruped | 20  | Human      |
-
-### Species Abilities (Non-Human Characters)
-
-|     |              |     |            |     |           |     |             |
-| --- | ------------ | --- | ---------- | --- | --------- | --- | ----------- |
-| 1   | Aggressive   | 6   | Weakness   | 11  | Telepathy | 16  | Ethereal    |
-| 2   | Shapeshifter | 7   | Multi-limb | 12  | Logic     | 17  | Telekinesis |
-| 3   | Invisibility | 8   | Regenerate | 13  | Climbing  | 18  | Reputation  |
-| 4   | Multiform    | 9   | Teleport   | 14  | Immunity  | 19  | Healer      |
-| 5   | Hive Mind    | 10  | Parasitic  | 15  | Poisonous | 20  | Weak Spot   | -->
 
 ### Talents
 
@@ -129,8 +111,6 @@ If you would like something closer to traditional classes, refer to the list of 
 | 3   | Low-G         | 8   | High-Tech | 13  | Water World | 18  | Toxic    |
 | 4   | Zero-G        | 9   | Low-Tech  | 14  | Rock        | 19  | Toxic    |
 | 5   | Desert        | 10  | Colony    | 15  | Volcanic    | 20  | Dead     |
-
-<div style="page-break-before: always;"></div>
 
 ### Clothing
 
@@ -172,8 +152,6 @@ If you would like something closer to traditional classes, refer to the list of 
 | 4   | Condemned   | 9   | Disowned    | 14  | Mutilated | 19  | Robbed    |
 | 5   | Unlucky     | 10  | Exiled      | 15  | Poor      | 20  | Suspected |
 
-<div style="page-break-before: always;"></div>
-
 ## Name (d20)
 
 ### Human Names
@@ -188,6 +166,7 @@ If you would like something closer to traditional classes, refer to the list of 
 | 4   | Danoelle | 9   | Emis    | 14  | Michelle | 19  | Vandra  |
 | 5   | Debfa    | 10  | Evelyt  | 15  | Mile     | 20  | Vean    |
 
+<div style="page-break-before: always;"></div>
 
 #### Male Names
 

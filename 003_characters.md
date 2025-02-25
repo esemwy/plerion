@@ -43,7 +43,44 @@ If you would like something closer to traditional classes, refer to the list of 
 
 ## Origins & Traits (d20)
 
+
 ### Species
+
+|     |            |     |           |     |           |     |            |
+| --- | ---------- | --- | --------- | --- | --------- | --- | ---------- |
+| 1  | Human  | 6  | Human  | 11  | Ursidae  | 16  | Gulonidae  |  
+| 2  | Human  | 7  | Transhuman  | 12  | Procyonidae  | 17  | Lynxidae  |  
+| 3  | Human  | 8  | Canine  | 13  | Castoridae  | 18  | Martidae  |  
+| 4  | Human  | 9  | Vulpine  | 14  | Lutridae  | 19  | Bassarisidae  |  
+| 5  | Human  | 10  | Feline  | 15  | Melidae  | 20  | Quadruped  |  
+
+- **Human** – The dominant species across known space. Versatile, ambitious, and highly adaptable.  
+- **Transhuman** – Genetically or cybernetically enhanced humans, designed to push physical or mental limits.  
+- **Canidae** – Uplifted wolves and dogs. Social, cooperative, and fiercely loyal, excelling in teamwork and tracking.  
+- **Vulpidae** – Uplifted foxes. Clever, stealthy, and resourceful, with a knack for problem-solving and deception.  
+- **Felidae** – Uplifted cats. Agile, independent, and intelligent, excelling in reconnaissance and precision work.  
+- **Ursidae** – Uplifted bears. Powerful, patient, and highly resilient, often found in leadership or frontline roles.  
+- **Procyonidae** – Uplifted raccoons. Dexterous, inventive, and mischievous, making excellent scavengers and hackers.  
+- **Castoridae** – Uplifted beavers. Industrious, logical, and community-driven, with a strong instinct for engineering.  
+- **Lutridae** – Uplifted otters. Playful, dexterous, and highly adaptable, often excelling in piloting and mechanics.  
+- **Melidae** – Uplifted badgers. Stubborn, reliable, and incredibly determined, making them steadfast workers and warriors.  
+- **Gulonidae** – Uplifted wolverines. Fierce, tenacious, and highly independent, thriving in harsh conditions and combat.  
+- **Lynxidae** – Uplifted lynxes and bobcats. Silent, perceptive, and precise, excelling in ambush tactics and sniping.  
+- **Martidae** – Uplifted martens. Nimble, strategic, and quick-witted, effective in confined environments and infiltration.  
+- **Bassarisidae** – Uplifted ringtails. Agile, clever, and urban-adapted, making them expert navigators and scouts.  
+- **Quadruped** – Partially uplifted species retaining a four-legged stance with enhanced intelligence and limited tool use.  
+
+### Species Abilities (Non-Human Characters)
+
+|     |            |     |           |     |           |     |            |
+| --- | ---------- | --- | --------- | --- | --------- | --- | ---------- |
+| 1  | Inquisitive  | 6  | Loyal  | 11  | Soft-Step  | 16  | Vocal Mimicry  |  
+| 2  | Cautious  | 7  | Playful  | 12  | Hygienic  | 17  | Unshakable  |  
+| 3  | Curious  | 8  | Solitary  | 13  | Expressive Ears  | 18  | Observant  |  
+| 4  | Proud  | 9  | Patient  | 14  | Pungent  | 19  | Dry Humor  |  
+| 5  | Stubborn  | 10  | Subtle  | 15  | Keen Taste  | 20  | Collector |
+
+<!-- ### Species
 
 |     |            |     |           |     |           |     |            |
 | --- | ---------- | --- | --------- | --- | --------- | --- | ---------- |
@@ -61,7 +98,7 @@ If you would like something closer to traditional classes, refer to the list of 
 | 2   | Shapeshifter | 7   | Multi-limb | 12  | Logic     | 17  | Telekinesis |
 | 3   | Invisibility | 8   | Regenerate | 13  | Climbing  | 18  | Reputation  |
 | 4   | Multiform    | 9   | Teleport   | 14  | Immunity  | 19  | Healer      |
-| 5   | Hive Mind    | 10  | Parasitic  | 15  | Poisonous | 20  | Weak Spot   |
+| 5   | Hive Mind    | 10  | Parasitic  | 15  | Poisonous | 20  | Weak Spot   | -->
 
 ### Talents
 
@@ -92,6 +129,8 @@ If you would like something closer to traditional classes, refer to the list of 
 | 3   | Low-G         | 8   | High-Tech | 13  | Water World | 18  | Toxic    |
 | 4   | Zero-G        | 9   | Low-Tech  | 14  | Rock        | 19  | Toxic    |
 | 5   | Desert        | 10  | Colony    | 15  | Volcanic    | 20  | Dead     |
+
+<div style="page-break-before: always;"></div>
 
 ### Clothing
 
@@ -132,6 +171,8 @@ If you would like something closer to traditional classes, refer to the list of 
 | 3   | Blackmailed | 8   | Discredited | 13  | Kidnapped | 18  | Replaced  |
 | 4   | Condemned   | 9   | Disowned    | 14  | Mutilated | 19  | Robbed    |
 | 5   | Unlucky     | 10  | Exiled      | 15  | Poor      | 20  | Suspected |
+
+<div style="page-break-before: always;"></div>
 
 ## Name (d20)
 

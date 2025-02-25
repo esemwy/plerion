@@ -111,6 +111,8 @@ When multiple die are listed in damage (i.e., 2d6) roll all dice and take highes
 | Synthetic Mesh         | (2 Armor)                                      | 6,000  |
 | Tactical Body Armor    | (3 Armor, sealed)                              | 10,000 |
 
+<div style="page-break-before: always;"></div>
+
 ## Tags
 
 - **Blast**. Affects targets in the area. Roll damage for each target separately. When in doubt as to how many targets are affected, roll the damage die. Example: *- 1d8 Blast means that it affects 1d8 targets near the point of impact, dealing 1d8 to each*.

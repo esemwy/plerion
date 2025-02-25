@@ -48,26 +48,26 @@ If you would like something closer to traditional classes, refer to the list of 
 
 |     |            |     |           |     |           |     |            |
 | --- | ---------- | --- | --------- | --- | --------- | --- | ---------- |
-| 1  | Human  | 6  | Human  | 11  | Ursidae  | 16  | Gulonidae  |  
-| 2  | Human  | 7  | Transhuman  | 12  | Procyonidae  | 17  | Lynxidae  |  
-| 3  | Human  | 8  | Canine  | 13  | Castoridae  | 18  | Martidae  |  
-| 4  | Human  | 9  | Vulpine  | 14  | Lutridae  | 19  | Bassarisidae  |  
-| 5  | Human  | 10  | Feline  | 15  | Melidae  | 20  | Quadruped  |  
+| 1  | Human  | 6  | Human  | 11  | Ursidae  | 16  | Guloninae  |  
+| 2  | Human  | 7  | Transhuman  | 12  | Procyonidae  | 17  | Lynxinae  |  
+| 3  | Human  | 8  | Canidae  | 13  | Castoridae  | 18  | Martinae  |  
+| 4  | Human  | 9  | Vulpidae  | 14  | Lutrinae  | 19  | Bassarisinae  |  
+| 5  | Human  | 10  | Felidae  | 15  | Melinae  | 20  | Quadruped  |  
 
-- **Human** – The dominant species across known space. Versatile, ambitious, and highly adaptable.  
-- **Transhuman** – Genetically or cybernetically enhanced humans, designed to push physical or mental limits.  
-- **Canidae** – Uplifted wolves and dogs. Social, cooperative, and fiercely loyal, excelling in teamwork and tracking.  
-- **Vulpidae** – Uplifted foxes. Clever, stealthy, and resourceful, with a knack for problem-solving and deception.  
-- **Felidae** – Uplifted cats. Agile, independent, and intelligent, excelling in reconnaissance and precision work.  
-- **Ursidae** – Uplifted bears. Powerful, patient, and highly resilient, often found in leadership or frontline roles.  
-- **Procyonidae** – Uplifted raccoons. Dexterous, inventive, and mischievous, making excellent scavengers and hackers.  
-- **Castoridae** – Uplifted beavers. Industrious, logical, and community-driven, with a strong instinct for engineering.  
-- **Lutridae** – Uplifted otters. Playful, dexterous, and highly adaptable, often excelling in piloting and mechanics.  
-- **Melidae** – Uplifted badgers. Stubborn, reliable, and incredibly determined, making them steadfast workers and warriors.  
-- **Gulonidae** – Uplifted wolverines. Fierce, tenacious, and highly independent, thriving in harsh conditions and combat.  
-- **Lynxidae** – Uplifted lynxes and bobcats. Silent, perceptive, and precise, excelling in ambush tactics and sniping.  
-- **Martidae** – Uplifted martens. Nimble, strategic, and quick-witted, effective in confined environments and infiltration.  
-- **Bassarisidae** – Uplifted ringtails. Agile, clever, and urban-adapted, making them expert navigators and scouts.  
+- **Human** – Versatile, ambitious, and highly adaptable.  
+- **Transhuman** – Genetically or cybernetically enhanced humans.  
+- **Canidae** – Uplifted wolves and dogs. Social, cooperative, and fiercely loyal.  
+- **Vulpidae** – Uplifted foxes. Clever, stealthy, and resourceful.  
+- **Felidae** – Uplifted cats. Agile, independent, and intelligent.  
+- **Ursidae** – Uplifted bears. Powerful, patient, and highly resilient.  
+- **Procyonidae** – Uplifted raccoons. Dexterous, inventive, and mischievous.  
+- **Castoridae** – Uplifted beavers. Industrious, logical, and community-driven.  
+- **Lutrinae** – Uplifted otters. Playful, dexterous, and highly adaptable.  
+- **Melinae** – Uplifted badgers. Stubborn, reliable, and incredibly determined.  
+- **Guloninae** – Uplifted wolverines. Fierce, tenacious, and highly independent.  
+- **Lynxinae** – Uplifted lynxes and bobcats. Silent, perceptive, and precise.  
+- **Martinae** – Uplifted martens. Nimble, strategic, and quick-witted.  
+- **Bassarinae** – Uplifted ringtails. Agile, clever, and urban-adapted.  
 - **Quadruped** – Partially uplifted species retaining a four-legged stance with enhanced intelligence and limited tool use.  
 
 ### Species Abilities (Non-Human Characters)

@@ -357,6 +357,7 @@ img {
 }
 
 .cover img {
+  object-fit: cover;
   bottom: 0;
   height: 8.5in;
   left: 0;
@@ -364,7 +365,6 @@ img {
   max-width: none;
   object-fit: cover;
   page: full;
-  position: absolute;
   width: 5.5in;
   z-index: 1;
 }

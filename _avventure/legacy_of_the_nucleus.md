@@ -219,7 +219,7 @@ A cryptic signal intercepted by the "Veritas" Astronomical Complex on Kepler-62f
 
 ### Main Non-Player Characters
 
-####Amara Singh
+#### Amara Singh
 
 - **Faction**: Sol Conglomerate
 - **Role**: Commander of the Exploration Fleet
@@ -247,7 +247,7 @@ A cryptic signal intercepted by the "Veritas" Astronomical Complex on Kepler-62f
 - Prefers to use technological gadgets and traps to neutralize enemies.
 - **Special Effect**: A critical hit temporarily disables the enemy's technology in range.
 
-####Jax Tarren
+#### Jax Tarren
 
 - **Faction**: Avaros Rebels
 - **Role**: Charismatic leader of the Avaros Rebels

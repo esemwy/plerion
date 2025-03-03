@@ -49,7 +49,7 @@ If you would like something closer to traditional classes, refer to the list of 
 |     |            |     |           |     |           |     |            |
 | --- | ---------- | --- | --------- | --- | --------- | --- | ---------- |
 | 1  | Human  | 6  | Human  | 11  | Ursines  | 16  | Gulonines  |  
-| 2  | Human  | 7  | Transhuman  | 12  | Procyonids  | 17  | Lynxines  |  
+| 2  | Human  | 7  | Transhuman  | 12  | Procyonids  | 17  | Ailurids  |  
 | 3  | Human  | 8  | Canines  | 13  | Castorids  | 18  | Martines  |  
 | 4  | Human  | 9  | Vulpines  | 14  | Lutrines  | 19  | Basssarines  |  
 | 5  | Human  | 10  | Felines  | 15  | Melines  | 20  | Quadruped  |  
@@ -66,7 +66,7 @@ If you would like something closer to traditional classes, refer to the list of 
 - **Lutrines** – Uplifted otters. Playful, dexterous, and highly adaptable.  
 - **Melines** – Uplifted badgers. Stubborn, reliable, and incredibly determined.  
 - **Gulonines** – Uplifted wolverines. Fierce, tenacious, and highly independent.  
-- **Lynxines** – Uplifted lynxes and bobcats. Silent, perceptive, and precise.  
+- **Ailurids** – Uplifted red pandas. Playful, inquisitive, and fiercely independent.
 - **Martines** – Uplifted martens. Nimble, strategic, and quick-witted.  
 - **Basssarines** – Uplifted ringtails. Agile, clever, and urban-adapted.  
 - **Quadruped** – Partially uplifted species retaining a four-legged stance with enhanced intelligence and limited tool use.  
